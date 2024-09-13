@@ -32,7 +32,6 @@ public class GameService {
     private String cocktailName;
     private String hiddenCocktailName;
     private String instructions;
-    private int letterCount;
     private int attemptsLeft;
     private final List<String> revealedHints = new ArrayList<>();
 
@@ -41,7 +40,6 @@ public class GameService {
         // Initialize game state
         currentCocktail = cocktailService.getRandomCocktail();
         cocktailName = currentCocktail.getStrDrink();
-        letterCount = cocktailName.length();
         hiddenCocktailName = cocktailName.replaceAll("[^ ]", "_");
         instructions = currentCocktail.getStrInstructions();
         highScore = highScoreService.getHighScore();
@@ -125,7 +123,6 @@ public class GameService {
         currentCocktail = cocktailService.getRandomCocktail();
         cocktailName = currentCocktail.getStrDrink();
         instructions = currentCocktail.getStrInstructions();
-        letterCount = cocktailName.length();
         hiddenCocktailName = cocktailName.replaceAll("[^ ]", "_");
         attemptsLeft = MAX_ATTEMPTS;
         revealedHints.clear();
@@ -196,7 +193,6 @@ public class GameService {
             revealRandomLetter();
         }
     }
-
 
     private void revealRandomLetters(int count) {
         for (int i = 0; i < count; i++) {
