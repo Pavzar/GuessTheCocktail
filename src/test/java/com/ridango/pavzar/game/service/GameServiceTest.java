@@ -54,7 +54,7 @@ public class GameServiceTest {
 
     @Test
     public void testMakeGuess_Correct() {
-        GameState initialGameState = gameService.startGame(); // Start the game once
+        GameState initialGameState = gameService.startGame();
 
         String initialCocktailName = initialGameState.getCocktailName();
         int initialScore = initialGameState.getCurrentScore();
@@ -87,7 +87,7 @@ public class GameServiceTest {
         assertEquals(4, gameState.getAttemptsLeft());
         assertEquals("Incorrect guess.", gameState.getMessage());
         assertEquals(0, gameState.getCurrentScore());
-        assertFalse(gameState.getRevealedHints().isEmpty()); // Hint revealed
+        assertFalse(gameState.getRevealedHints().isEmpty());
     }
 
     @Test
@@ -108,7 +108,7 @@ public class GameServiceTest {
 
         assertEquals(0, gameState.getAttemptsLeft());
         assertEquals("The cocktail name was fully revealed. You're out of attempts! Game Ended.", gameState.getMessage());
-        assertEquals("Margarita", gameState.getHiddenCocktailName()); // Full name revealed on game over
+        assertEquals("Margarita", gameState.getHiddenCocktailName());
     }
 
     @Test
@@ -121,7 +121,7 @@ public class GameServiceTest {
         assertEquals(4, gameState.getAttemptsLeft());
         assertEquals("You skipped the round. Here's a hint.", gameState.getMessage());
         assertEquals(0, gameState.getCurrentScore());
-        assertFalse(gameState.getRevealedHints().isEmpty()); // Hint revealed
+        assertFalse(gameState.getRevealedHints().isEmpty());
     }
 
 }

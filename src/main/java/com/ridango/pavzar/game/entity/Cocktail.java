@@ -46,14 +46,6 @@ public class Cocktail {
 
     private String strMeasure4;
 
-    public Cocktail(Object o, long l, String unknown, String unknown1, String noInstructionsAvailable, String unknown2, Object o1, Object o2, Object o3, Object o4, Object o5, Object o6, Object o7, Object o8) {
-    }
-
-    public static Cocktail defaultCocktail() {
-        return new Cocktail(null, 0L, "Unknown", "Unknown", "No instructions available",
-                "Unknown", null, null, null, null, null, null, null, null);
-    }
-
     public String getStrIngredient(int index) {
         return switch (index) {
             case 1 -> strIngredient1;
@@ -63,5 +55,4 @@ public class Cocktail {
             default -> null;
         };
     }
-
 }

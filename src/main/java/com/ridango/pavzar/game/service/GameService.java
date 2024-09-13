@@ -177,7 +177,6 @@ public class GameService {
         }
 
         if (!possibleHints.isEmpty()) {
-            // Create a copy of possibleHints to avoid modifying the original list
             List<String> shuffledHints = new ArrayList<>(possibleHints);
             Collections.shuffle(shuffledHints);
 

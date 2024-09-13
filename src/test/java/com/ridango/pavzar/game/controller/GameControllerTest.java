@@ -30,7 +30,7 @@ public class GameControllerTest {
     private GameService gameService;
 
     @Autowired
-    private ObjectMapper objectMapper; // For JSON serialization
+    private ObjectMapper objectMapper;
 
     @Test
     public void testStartGame() throws Exception {
