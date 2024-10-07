@@ -5,6 +5,7 @@ import com.ridango.pavzar.game.model.CocktailResponse;
 import com.ridango.pavzar.game.repository.CocktailRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.*;
@@ -22,6 +23,9 @@ public class CocktailService {
     private String API_URI;
 
     private final CocktailRepository cocktailRepository;
+
+    @Autowired
+    private CocktailService cocktailService; // Inject CocktailService into itself
 
     private static final Logger logger = LoggerFactory.getLogger(CocktailService.class);
 
@@ -49,27 +53,28 @@ public class CocktailService {
                     // Check if the cocktail ID already exists in the database
                     if (cocktailRepository.existsByIdDrink(cocktail.getIdDrink())) {
                         // If it exists, it is a duplicate, so fetch another one recursively
-                        return getRandomCocktail();
+                        return cocktailService.getRandomCocktail(); // Call through the injected instance
                     } else {
                         cocktailRepository.save(cocktail);
                         return cocktail;
                     }
                 } catch (DataIntegrityViolationException e) {
                     logger.warn("Duplicate cocktail detected. Fetching another one.", e);
-                    return getRandomCocktail();
+                    // Handle the duplicate cocktail (e.g., fetch another one)
+                    return cocktailService.getRandomCocktail();
                 }
             } else {
                 logger.error("No cocktail found in the API response");
-                return getRandomCocktail();
+                return Cocktail.getDefaultCocktail();
             }
         } catch (HttpClientErrorException.NotFound e) {
             logger.error("Cocktail not found", e);
-            return getRandomCocktail();
+            return Cocktail.getDefaultCocktail();
 
         } catch (Exception e) {
             // Handle other exceptions (e.g., network issues, parsing errors)
             logger.error("Error fetching random cocktail", e);
-            return getRandomCocktail();
+            return Cocktail.getDefaultCocktail();
         }
     }
 }

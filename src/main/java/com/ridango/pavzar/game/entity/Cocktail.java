@@ -7,8 +7,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Cocktail {
@@ -54,5 +54,26 @@ public class Cocktail {
             case 4 -> strIngredient4;
             default -> null;
         };
+    }
+
+    public static Cocktail getDefaultCocktail() {
+        // Create a new Cocktail object with default values
+        Cocktail defaultCocktail = new Cocktail();
+        defaultCocktail.setIdDrink(1L);
+        defaultCocktail.setStrDrink("Mojito");
+        defaultCocktail.setStrCategory("Cocktail");
+        defaultCocktail.setStrInstructions("Muddle mint leaves with sugar and lime juice. Add rum and top with soda water. Garnish with mint sprig.");
+        defaultCocktail.setStrGlass("Highball glass");
+        defaultCocktail.setStrDrinkThumb("https://www.thecocktaildb.com/images/media/drink/metwgh1606770327.jpg");
+        defaultCocktail.setStrIngredient1("White rum");
+        defaultCocktail.setStrIngredient2("Sugar");
+        defaultCocktail.setStrIngredient3("Lime juice");
+        defaultCocktail.setStrIngredient4("Soda water");
+        defaultCocktail.setStrMeasure1("2 oz");
+        defaultCocktail.setStrMeasure2("2 tsp");
+        defaultCocktail.setStrMeasure3("1 oz");
+        defaultCocktail.setStrMeasure4("Top");
+
+        return defaultCocktail;
     }
 }
